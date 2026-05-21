@@ -46,49 +46,41 @@ The application features a secure, session-based authentication system with dedi
 
 \*\*Platform View 1\*\*
 
-!\[Platform View 1](assets/1.png)
 
 
 
 \*\*Platform View 2\*\*
 
-!\[Platform View 2](assets/2.png)
 
 
 
 \*\*Platform View 3\*\*
 
-!\[Platform View 3](assets/3.png)
 
 
 
 \*\*Platform View 4\*\*
 
-!\[Platform View 4](assets/4.png)
 
 
 
 \*\*Platform View 5\*\*
 
-!\[Platform View 5](assets/5.png)
 
 
 
 \*\*Platform View 6\*\*
 
-!\[Platform View 6](assets/6.png)
 
 
 
 \*\*Platform View 7\*\*
 
-!\[Platform View 7](assets/7.png)
 
 
 
 \*\*Platform View 8\*\*
 
-!\[Platform View 8](assets/8.png)
 
 
 
