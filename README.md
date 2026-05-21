@@ -58,9 +58,3 @@ The application features a secure, session-based authentication system with dedi
 * **State Management:** Server-side Sessions & Cookies
 
 ## 🛠️ Local Setup Instructions
-
-Follow these steps to run the project on your local machine:
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/yourusername/pc-builders-aspnet-core.git](https://github.com/yourusername/pc-builders-aspnet-core.git)
