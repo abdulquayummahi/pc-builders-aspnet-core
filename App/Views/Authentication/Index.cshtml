@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Welcome to PC Builders";
+}
+
+<div class="text-center" style="margin-top: 100px;">
+
+    <h1 class="display-4 fw-bold">Welcome to PC Builders</h1>
+    <p class="lead text-muted mb-5">
+        The ultimate platform to buy, build, and customize your dream PC.
+    </p>
+
+    <div>
+        <a asp-controller="Authentication" asp-action="Login" class="btn btn-primary btn-lg me-3 px-5">
+            Login
+        </a>
+
+        <a asp-controller="Authentication" asp-action="Registration" class="btn btn-outline-primary btn-lg px-5">
+            Register
+        </a>
+    </div>
+
+</div>
