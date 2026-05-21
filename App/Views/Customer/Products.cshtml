@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BLL.DTOs.ProductDTO>
+
+@{
+    ViewData["Title"] = "Shop PC Parts";
+}
+
+<div class="container mt-4">
+    <h2>Explore Our Products</h2>
+    <hr />
+
+    @if (TempData["Msg"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong> @TempData["Msg"]
+        </div>
+    }
+
+    <div class="row mt-3">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+
+                    <div class="border p-3 text-center">
+                        <p class="text-muted mb-1">@item.Category</p>
+
+                        <h4>@item.Name</h4>
+                        <h3 class="text-success">$@item.Price</h3>
+
+                        @if (item.Stock > 0)
+                        {
+                            <p>In Stock: @item.Stock</p>
+
+                            <form asp-action="BuyNow" method="post">
+                                <input type="hidden" name="ProductId" value="@item.Id" />
+                                <input type="hidden" name="UnitPrice" value="@item.Price" />
+                                <input type="hidden" name="Quantity" value="1" />
+
+                                <button type="submit" class="btn btn-primary">
+                                    Buy Now
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <p class="text-danger">Out of Stock</p>
+                            <button class="btn btn-secondary" disabled>Out of Stock</button>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center py-4 text-muted">
+                No products are currently available.
+            </div>
+        }
+    </div>
+</div>

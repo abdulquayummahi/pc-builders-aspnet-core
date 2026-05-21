@@ -1,0 +1,110 @@
+﻿@model IEnumerable<BLL.DTOs.ProductDTO>
+
+@{
+    ViewData["Title"] = "Admin - Manage Products";
+}
+
+<div class="container mt-4">
+    <h2>Manage Products</h2>
+    <hr />
+
+    <div class="mb-5">
+        <h4>Add New Product</h4>
+        <form asp-action="AddProduct" method="post" class="row g-3 mt-2">
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Product Name</label>
+                <input type="text" name="Name" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Category</label>
+                <select name="Category" class="form-select" required>
+                    <option value="">Select Category...</option>
+                    <option value="Processor">Processor</option>
+                    <option value="Graphics Card">Graphics Card</option>
+                    <option value="Memory">Memory</option>
+                    <option value="Storage">Storage</option>
+                    <option value="Power Supply">Power Supply</option>
+                    <option value="Case">Case</option>
+                    <option value="Peripheral">Peripheral</option>
+                    <option value="Accessory">Accessory</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Stock Quantity</label>
+                <input type="number" name="Stock" class="form-control" required min="0">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Price ($)</label>
+                <input type="number" name="Price" class="form-control" required min="0">
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">Save Product</button>
+            </div>
+        </form>
+    </div>
+
+    @if (TempData["Msg"] != null)
+    {
+        <div class="alert alert-success">
+            <strong>Success!</strong> @TempData["Msg"]
+        </div>
+    }
+
+    <h4>Available Products</h4>
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td class="fw-bold">@item.Name</td>
+                        <td>@item.Category</td>
+                        <td>
+                            @if (item.Stock < 10)
+                            {
+                                <span class="text-danger fw-bold">@item.Stock (Low)</span>
+                            }
+                            else
+                            {
+                                @item.Stock
+                            }
+                        </td>
+                        <td>$@item.Price</td>
+                        <td>
+                            <a asp-action="UpdateProduct" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Edit</a>
+
+                            <a asp-action="DeleteProduct" asp-route-id="@item.Id" class="btn btn-sm btn-danger"
+                               onclick="return confirm('Are you sure you want to delete @item.Name?');">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted py-4">
+                        No products found in the database.
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

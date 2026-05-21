@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BLL.DTOs.OrderDTO>
+
+@{
+    ViewData["Title"] = "My Order History";
+}
+
+<div class="container mt-4">
+    <h2>My Order History</h2>
+    <hr />
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+        <tr>
+            <th>Order #</th>
+            <th>Order Date</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model.OrderByDescending(o => o.OrderDate))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.OrderDate.ToString("MMM dd, yyyy")</td>
+                    <td>@item.ProductId</td>
+                    <td>@item.Quantity</td>
+                        
+                    <td class="text-success fw-bold">
+                        $@(item.Quantity * item.UnitPrice)
+                    </td>
+                        
+                    <td>
+                        @item.Status
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted py-4">
+                    <p>You haven't placed any orders yet.</p>
+                    <a asp-controller="Customer" asp-action="Products" class="btn btn-primary btn-sm">Start Shopping</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
